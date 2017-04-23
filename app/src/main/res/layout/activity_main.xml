@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.stickgame.MainActivity">
+    <LinearLayout
+        android:id="@+id/main_linear_state"
+        android:background="@android:color/holo_blue_bright"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
+    <LinearLayout
+        android:id="@+id/main_linear_body"
+        android:background="@android:color/holo_blue_dark"
+        android:orientation="horizontal"
+        android:layout_weight="0.5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
+    <LinearLayout
+        android:id="@+id/main_linear_bottom"
+        android:background="@android:color/holo_green_light"
+        android:orientation="horizontal"
+        android:layout_weight="0.8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
+</LinearLayout>
