@@ -75,6 +75,9 @@ public class StickVV extends View {
         }*/
         canvas.drawLine(fx,fy,fx,500,paint);
         canvas.rotate(46,fx,fy);
+        int sx = fx;
+        int sy = 500;
+
         canvas.drawLine(fx,fy,fx,500,paint);
 
     }
