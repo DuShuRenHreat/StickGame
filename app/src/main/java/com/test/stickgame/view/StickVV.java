@@ -118,6 +118,9 @@ public class StickVV extends View {
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
         canvas.drawCircle(mx,fy,10,paint);
     }
+    public int getLineLength(){
+        return fx + speed;
+    }
     /**
      * 画中心的点
      * */

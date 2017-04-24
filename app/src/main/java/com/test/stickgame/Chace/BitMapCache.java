@@ -3,6 +3,7 @@ package com.test.stickgame.Chace;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import java.util.HashMap;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
  */
 
 public class BitMapCache {
-    private static Bitmap bitmap = null;
+
     private static Context context;
     public BitMapCache(Context context){
         this.context = context;
@@ -19,10 +20,14 @@ public class BitMapCache {
     private static HashMap<Integer,Bitmap> cache  = new HashMap<>();
     public static Bitmap create(int resId){
         for(Integer i : cache.keySet()){
-            return cache.get(i);
+            if(i == resId){
+                return cache.get(resId);
+            }
         }
+        Bitmap bitmap = null;
         bitmap = BitmapFactory.decodeResource(context.getResources(),resId);
         cache.put(resId,bitmap);
+        Log.e("test","已缓存");
         return bitmap;
     }
 }

@@ -25,7 +25,12 @@
         android:orientation="horizontal"
         android:layout_weight="0.5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/main_frame_body_person"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/main_linear_bottom"
         android:background="@android:color/transparent"
