@@ -83,6 +83,9 @@ public class MainActivity extends Activity {
         });
 
     }
+    /**
+     * 结果
+     * */
     @Mess
     public void test(String result){
         Log.e("test","result: " + result);
