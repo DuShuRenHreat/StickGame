@@ -85,8 +85,8 @@ public class WallView extends View {
     *重新安排顺序
     **/
     public WallView reOrder(){
-        fristnum = 400 + random.nextInt(200);
-        secondnum = fristnum + random.nextInt(200) + 100;
+        fristnum = 300 + random.nextInt(300);
+        secondnum = fristnum + random.nextInt(250) + 50;
         return this;
     }
 

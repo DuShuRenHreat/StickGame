@@ -77,7 +77,7 @@ public class StickVV extends View {
         drawMyPoint(canvas);
     }
     /**
-     * 处理结果
+     * 处理结果返回到MainActivity
      * */
     public void jude(){
         int x =   fx + speed;

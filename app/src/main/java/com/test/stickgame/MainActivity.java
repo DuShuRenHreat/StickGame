@@ -2,7 +2,6 @@ package com.test.stickgame;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -88,7 +87,13 @@ public class MainActivity extends Activity {
      * */
     @Mess
     public void test(String result){
-        Log.e("test","result: " + result);
+        if("false".equals(result)){
+            //失败
+        }else if("true".equals(result)){
+            //成功
+        }else if("zhong".equals(result)){
+            //中红点
+        }
     }
 
     //实例化中部
