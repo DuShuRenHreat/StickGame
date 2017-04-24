@@ -7,13 +7,14 @@ import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class WallView extends View {
     private Paint paint = null;
     private int fristnum;
     private int secondnum;
-
+    Random random = new Random();
 
     private int height;
     public WallView(Context context) {
@@ -38,6 +39,7 @@ public class WallView extends View {
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
         paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        reOrder();
 
     }
     /**
@@ -49,10 +51,7 @@ public class WallView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Random random = new Random();
         canvas.drawRect(0,0,100,564,paint);
-        fristnum = 100 + random.nextInt(500);
-        secondnum = fristnum + random.nextInt(300) + 50;
         canvas.drawRect(fristnum,0,secondnum,564,paint);
     }
 
@@ -68,7 +67,27 @@ public class WallView extends View {
     /**
      * 初始化
      * */
-    public void init(){
+    public WallView init(){
         invalidate();
+        return this;
     }
+    /**
+     * 获取第二个个柱子中间的坐标 X , X1,X2
+     * */
+    public HashMap<String,Integer> getMidpoint(){
+        HashMap<String,Integer> result = new HashMap<>();
+        result.put("f",fristnum);
+        result.put("m" ,fristnum + ((secondnum - fristnum) / 2) );
+        result.put("s",secondnum);
+        return result;
+    }
+    /*
+    *重新安排顺序
+    **/
+    public WallView reOrder(){
+        fristnum = 400 + random.nextInt(200);
+        secondnum = fristnum + random.nextInt(200) + 100;
+        return this;
+    }
+
 }
