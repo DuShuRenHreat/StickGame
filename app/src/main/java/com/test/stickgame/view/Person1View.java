@@ -34,7 +34,7 @@ public class Person1View extends View {
     public static final int STATE_FAIL_DOWN = 400;
     private int type = STATE_DEFAULE;
     private int playId = 0;
-    private int[] imgs = {R.drawable.pic_right_1,R.drawable.pic_right_2,R.drawable.pic_right_3,R.drawable.pic_right_4};
+    private int[] imgs = {R.drawable.pp1,R.drawable.pp2,R.drawable.pp3,R.drawable.pp4,R.drawable.pp5,R.drawable.pp6};
     public Person1View(Context context, int x, int y) {
         super(context);
         paint = new Paint();
@@ -66,7 +66,7 @@ public class Person1View extends View {
                         case STATE_FAIL_DOWN:
                             if(movey <= 100){
                                 movey +=10;
-                                setY((fy - 84) + movey);
+                                setY(fy + movey);
                             }else{
                                 setType(STATE_DEFAULE);
                                 Messager.getInstance().post("book",new String[]{"false"});
@@ -93,7 +93,7 @@ public class Person1View extends View {
         drawPerson(canvas);
     }
     public int switchOne(){
-       return ++playId == 4 ? playId = 0 : playId;
+       return ++playId == 6 ? playId = 0 : playId;
     }
     public void drawPerson(Canvas canvas){
         int val  = switchOne();
@@ -133,14 +133,14 @@ public class Person1View extends View {
     }
     public void raize(){
         ViewGroup.LayoutParams lp = getLayoutParams();
-        Bitmap bitmap = BitMapCache.create(R.drawable.pic_right_1);
+        Bitmap bitmap = BitMapCache.create(R.drawable.pp1);
         lp.width = bitmap.getWidth();
         lp.height = bitmap.getHeight();
         setLayoutParams(lp);
     }
     public void init(){
         setX(0);
-        setY(fy - 84);
+        setY(fy - 250);
         movex = 0;
         type = STATE_DEFAULE;
         movey = 0;

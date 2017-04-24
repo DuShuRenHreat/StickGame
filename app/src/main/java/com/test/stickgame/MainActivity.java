@@ -20,7 +20,7 @@ import com.test.stickgame.subscriber.Mess;
 import com.test.stickgame.subscriber.Messager;
 import com.test.stickgame.utils.InitID;
 import com.test.stickgame.utils.InitView;
-import com.test.stickgame.view.PersonView;
+import com.test.stickgame.view.Person1View;
 import com.test.stickgame.view.StickVV;
 import com.test.stickgame.view.WallView;
 
@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
 
     private StickVV stick;
     private WallView wall;
-    private PersonView person;
+    private Person1View person;
 
     @InitID(R.id.main_btn_reset)
     private Button btn_reset;
@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
 
     //实例化中部
     public void iniBody(){
-        person = new PersonView(this,0,fy-84);
+        person = new Person1View(this,0,fy-250);
         stick = new StickVV(this);
         personlayout.addView(stick);
         personlayout.addView(person);
