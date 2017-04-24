@@ -3,14 +3,18 @@ package com.test.stickgame;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.test.stickgame.subscriber.Mess;
 import com.test.stickgame.subscriber.Messager;
@@ -43,7 +47,9 @@ public class MainActivity extends Activity {
 
     public static  boolean isExecute = false;
 
-
+    @InitID(R.id.main_tv_num)
+    private TextView tvnum;
+    private int num;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,21 +98,17 @@ public class MainActivity extends Activity {
     }
     public void doAnimation1(){
         AnimatorSet set = new AnimatorSet() ;
-        ObjectAnimator anim = ObjectAnimator .ofFloat(main, "rotationX", 0f, 360f);
-        anim.setDuration(2000);
-        ObjectAnimator anim2 = ObjectAnimator .ofFloat(main, "rotationX", 360f, 0f);
-        anim2.setDuration(2000);
-        set.play(anim).before(anim2);
+        ObjectAnimator anim = ObjectAnimator .ofFloat(main, "rotationX", 0f, 180f);
+        anim.setDuration(250);
+        set.play(anim);
         set.start();
 
     }
     public void doAnimation2(){
         AnimatorSet set = new AnimatorSet() ;
-        ObjectAnimator anim3 = ObjectAnimator .ofFloat(main, "rotationY", 0f, 360);
-        anim3.setDuration(2000);
-        ObjectAnimator anim4 = ObjectAnimator .ofFloat(main, "rotationY", 360f, 0f);
-        anim4.setDuration(2000);
-        set.play(anim3).before(anim4) ;
+        ObjectAnimator anim4 = ObjectAnimator .ofFloat(main, "rotationY", 180f, 0f);
+        anim4.setDuration(250);
+        set.play(anim4) ;
         set.start();
     }
     /**
@@ -126,16 +128,21 @@ public class MainActivity extends Activity {
      * */
     @Mess
     public void test(String[] strs){
-        Log.e("tset","size: " + strs[0]);
         if("true".equals(strs[0])){
-            Log.e("li","true");
-            doAnimation1();
-            init();
-            doAnimation2();
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    doAnimation2();
+                    init();
+                }
+            });
         }else if("false".equals(strs[0])){
-            Log.e("li","false");
-        }else{
-            Log.e("li","other");
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    dialogShow();
+                }
+            });
         }
     }
     /**
@@ -144,15 +151,15 @@ public class MainActivity extends Activity {
     @Mess
     public void test(String result){
         if("false".equals(result)){
-            //失败
             person.failuere(stick.getLineLength());
         }else if("true".equals(result)){
-            //成功
+            num++;
             person.successful();
         }else if("zhong".equals(result)){
-            //中红点
+            num+=2;
             person.zhong();
         }
+        tvnum.setText(num + "");
     }
 
     //实例化中部
@@ -172,4 +179,35 @@ public class MainActivity extends Activity {
         stick.drawMidPoint(wall.getMidpoint());
         person.setVals(wall.getMidpoint());
     }
+
+    public void dialogShow(){
+        AlertDialog dialog = null;
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view  = LayoutInflater.from(this).inflate(R.layout.dialog,null);
+        builder.setView(view);
+        dialog = builder.create();
+        final AlertDialog finalDialog = dialog;
+        final TextView tv = (TextView) view.findViewById(R.id.dialog_tv_show);
+        tv.setText("您最高成绩为： " + num);
+        view.findViewById(R.id.dialog_btn_begin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                init();
+                finalDialog.dismiss();
+                initNumTitle();
+            }
+        });
+        view.findViewById(R.id.dialog_btn_shouye).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        dialog.show();
+    }
+    public void initNumTitle(){
+        num = 0;
+        tvnum.setText(num);
+    }
+
 }

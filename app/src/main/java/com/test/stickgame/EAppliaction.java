@@ -4,9 +4,6 @@ import android.app.Application;
 
 import com.test.stickgame.Chace.BitMapCache;
 
-/**
- * Created by asdf on 2017/4/24.
- */
 
 public class EAppliaction extends Application {
     public BitMapCache cache;

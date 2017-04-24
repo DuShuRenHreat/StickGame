@@ -4,13 +4,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bbb"
     android:orientation="vertical"
     tools:context="com.test.stickgame.MainActivity">
     <LinearLayout
         android:id="@+id/main_linear_state"
-        android:background="@android:color/holo_blue_bright"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_weight="1"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <Button
@@ -29,7 +30,15 @@
         <FrameLayout
             android:id="@+id/main_frame_body_person"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/main_tv_num"
+                android:textSize="50dp"
+                android:text="0"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/main_linear_bottom"
