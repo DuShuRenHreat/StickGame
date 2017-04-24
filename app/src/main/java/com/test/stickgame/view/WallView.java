@@ -8,8 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Random;
+
 public class WallView extends View {
     private Paint paint = null;
+    private int fristnum;
+    private int secondnum;
+
+
     private int height;
     public WallView(Context context) {
         super(context);
@@ -46,8 +51,24 @@ public class WallView extends View {
         super.onDraw(canvas);
         Random random = new Random();
         canvas.drawRect(0,0,100,564,paint);
-        int frist = 100 + random.nextInt(500);
-        int second = frist + random.nextInt(300) + 50;
-        canvas.drawRect(frist,0,second,564,paint);
+        fristnum = 100 + random.nextInt(500);
+        secondnum = fristnum + random.nextInt(300) + 50;
+        canvas.drawRect(fristnum,0,secondnum,564,paint);
+    }
+
+    /**
+     * 获取范围 X,Y
+     * */
+    public int[] getRange(){
+        int[] arr = new int[2];
+        arr[0] = fristnum;
+        arr[1] = secondnum;
+        return arr;
+    }
+    /**
+     * 初始化
+     * */
+    public void init(){
+        invalidate();
     }
 }
